@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chuva Carnaúba (2013–2025)</title>
+    <script src="echarts.js"></script>
+  </head>
+  <body>
+    <div id="main" style="width: 1500x; height: 800px;"></div>
+
+    <script type="text/javascript">
+      const anos = [
+        2014, 2015, 2016, 2017, 2018, 2019,
+        2020, 2021, 2022, 2023, 2024
+      ];
+
+      const chuva = [
+        404.6, 386.7, 211.5, 714.6, 768.4,
+        497.9, 591.3, 398.5, 938.6, 465.6, 578.2
+      ];
+
+      const dias5mm = [
+        14, 16, 10, 28, 21,
+        25, 19, 19, 37, 18, 21
+      ];
+
+      const dias10mm = [
+        9, 9, 6, 21, 16,
+        16, 11, 11, 24, 16, 14
+      ];
+
+      const chuvaDiff = [null];
+      for (let i = 1; i < chuva.length; i++) {
+        chuvaDiff.push((chuva[i] - chuva[i - 1]).toPrecision(2));
+      }
+      
+      const chartDom = document.getElementById('main');
+      const myChart = echarts.init(chartDom);
+      const option = {
+        title: { text: 'Comparação do total de chuva anual e variação em relação ao ano anterior (2015-2024)' },
+        tooltip: { trigger: 'axis' },
+        legend: { data: ['Total Chuva (mm)', 'Diferença vs Ano Anterior (mm)'] },
+        xAxis: { type: 'category', data: anos },
+        yAxis: { type: 'value' },
+        series: [
+          {
+            name: 'Diferença vs Ano Anterior (mm)',
+            type: 'bar',
+            data: chuvaDiff
+          }
+        ]
+      };
+
+      myChart.setOption(option);
+    </script>
+  </body>
+</html>
