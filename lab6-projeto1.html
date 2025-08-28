@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chuva Carnaúba (2013–2025)</title>
+    <script src="echarts.js"></script>
+  </head>
+  <body>
+    <div id="main" style="width: 1500x; height: 800px;"></div>
+
+    <script type="text/javascript">
+      const anos = [
+        2015, 2016, 2017, 2018, 2019,
+        2020, 2021, 2022, 2023, 2024
+      ];
+
+      const chuva = [
+        386.7, 211.5, 714.6, 768.4,
+        497.9, 591.3, 398.5, 938.6, 465.6, 578.2
+      ];
+
+      const dias5mm = [
+        16, 10, 28, 21,
+        25, 19, 19, 37, 18, 21
+      ];
+
+      const dias10mm = [
+        9, 6, 21, 16,
+        16, 11, 11, 24, 16, 14
+      ];
+
+      const chartDom = document.getElementById('main');
+      const myChart = echarts.init(chartDom);
+      const option = {
+        title: { text: 'Volume de chuva acumulada na Fazenda Carnaúba por ano (2015-2024)' },
+        tooltip: { trigger: 'axis' },
+        legend: { data: ['Total Chuva (mm)'] },
+        xAxis: { type: 'category', data: anos },
+        yAxis: { type: 'value' },
+        series: [
+          {
+            name: 'Total Chuva (mm)',
+            type: 'line',
+            data: chuva
+          },
+        
+        ]
+      };
+
+      myChart.setOption(option);
+    </script>
+  </body>
+</html>
